@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "templarmod:raw_sacred_steel_block"
+    }
+  ],
+  "result": {
+    "item": "templarmod:raw_sacred_steel",
+    "count": 9
+  }
+}

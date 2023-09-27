@@ -1,0 +1,14 @@
+{
+  "item.templarmod.templar_icon": "Templar Icon",
+  "item.templarmod.raw_sacred_steel": "Raw Sacred Steel",
+  "item.templarmod.sacred_steel_ingot": "Sacred Steel Ingot",
+  "block.templarmod.sacred_steel_block": "Sacred Steel Block",
+  "block.templarmod.raw_sacred_steel_block": "Raw Sacred Steel Block",
+  "block.templarmod.sacred_steel_ore": "Sacred Steel Ore",
+  "item.templarmod.calice": "Calice",
+  "block.templarmod.purifier": "Purifier",
+  "item.templarmod.holy_cross": "Holy Cross",
+    "item.templarmod.templar_sword": "Templar Sword",
+
+  "creativetab.templar_tab": "Templar"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "templarmod:block/sacred_steel_ore"
+  }
+}

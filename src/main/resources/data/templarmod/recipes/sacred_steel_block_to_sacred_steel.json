@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "templarmod:sacred_steel_block"
+    }
+  ],
+  "result": {
+    "item": "templarmod:sacred_steel_ingot",
+    "count": 9
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.7,
+  "group": "sacred_steel_ingot",
+  "ingredient": {
+    "item": "templarmod:raw_sacred_steel"
+  },
+  "result": "templarmod:sacred_steel_ingot"
+}

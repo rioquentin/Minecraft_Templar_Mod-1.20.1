@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "templarmod:raw_sacred_steel"
+    }
+  },
+  "result": {
+    "item": "templarmod:raw_sacred_steel_block",
+    "count": 1
+  }
+}
