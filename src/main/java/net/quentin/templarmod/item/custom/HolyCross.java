@@ -1,5 +1,11 @@
 package net.quentin.templarmod.item.custom;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -13,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.level.Level;
+
 
 @Mod.EventBusSubscriber(modid = "templarmod")
 public class HolyCross extends Item {
@@ -87,8 +94,9 @@ public class HolyCross extends Item {
                 }
             }
 
-            // Client-side logic: Generate particles in a circle
+            // Client-side logic
             else {
+                // Generate particles in a circle
                 for (float angle = 0; angle < 360; angle += 2) {
                     double x = player.getX() + RADIUS * Math.cos(Math.toRadians(angle));
                     double z = player.getZ() + RADIUS * Math.sin(Math.toRadians(angle));
@@ -96,8 +104,45 @@ public class HolyCross extends Item {
 
                     player.getCommandSenderWorld().addParticle(ParticleTypes.FLAME, x, y, z, 0, 0, 0);
                 }
+
+                // Render the magic circle at the player's feet
+                renderMagicCircle(player);
             }
         }
     }
+
+    private static void renderMagicCircle(Player player) {
+        PoseStack matrixStack = new PoseStack();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+
+        ResourceLocation magicCircleTexture = new ResourceLocation("templarmod:textures/effect/holy_circle.png");
+
+        RenderSystem.setShaderTexture(0, magicCircleTexture);
+
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+
+
+        matrixStack.pushPose();
+
+        matrixStack.translate(player.getX(), player.getY(), player.getZ());
+        matrixStack.scale(2.0F, 2.0F, 2.0F);
+        matrixStack.translate(-0.5D, 0.05D, -0.5D);
+
+        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        bufferBuilder.vertex(matrixStack.last().pose(), 0, 0, 1).uv(0, 1).endVertex();
+        bufferBuilder.vertex(matrixStack.last().pose(), 1, 0, 1).uv(1, 1).endVertex();
+        bufferBuilder.vertex(matrixStack.last().pose(), 1, 0, 0).uv(1, 0).endVertex();
+        bufferBuilder.vertex(matrixStack.last().pose(), 0, 0, 0).uv(0, 0).endVertex();
+
+        Tesselator.getInstance().end();
+
+        matrixStack.popPose();
+
+
+        RenderSystem.disableBlend();
+    }
+
 
 }
